@@ -25,11 +25,13 @@ const nextConfig = {
 
 const sentryWebpackPluginOptions = {
   silent: false,
-  url: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  include: '.',
+  ignore: ['node_modules'],
+  url: 'https://sentry.io/',
   org: 'otakimi',
   project: 'shaynlink',
   authToken: process.env.DNS_TOKEN,
-  configFile: path.join(__dirname, '.sentryclirc')
+  configFile: path.join(__dirname, 'sentry.properties')
 }
 
 export default withSentryConfig(nextConfig, sentryWebpackPluginOptions);
