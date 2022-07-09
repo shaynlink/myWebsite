@@ -12,10 +12,8 @@ const contentSecurityPolicy = `
   child-src www.shaynlink.dev;
   style-src 'self' www.shaynlink.dev;
   font-src 'self' fonts.gstatic.com github.com;
-  connect-src 'self'  vitals.vercel-insights.com;
+  connect-src 'self' vitals.vercel-insights.com  o1113799.ingest.sentry.io;
 `;
-
-console.log(contentSecurityPolicy.replace(/\s{2,}/g, ' ').trim());
 
 const securityHeaders = [
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
