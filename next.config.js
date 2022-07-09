@@ -7,11 +7,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const contentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self';
+  default-src 'self' o1113799.ingest.sentry.io;
+  script-src 'self' www.googletagmanager.com;
   child-src www.shaynlink.dev;
   style-src 'self' www.shaynlink.dev;
-  font-src 'self';
+  font-src 'self' fonts.gstatic.com github.com;
+  connect-src 'self'  vitals.vercel-insights.com;
 `;
 
 console.log(contentSecurityPolicy.replace(/\s{2,}/g, ' ').trim());
