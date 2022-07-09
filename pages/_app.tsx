@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
+import Layout from '../components/layout';
 import * as gtag from '../lib/gtag';
 import * as gtm from '../lib/gtm';
 import I18n from '../lib/i18n';
 
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
+
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       gtag.pageview(url);
@@ -80,7 +82,9 @@ function App({ Component, pageProps }: AppProps) {
         }}
       />
       <I18n lngDict={pageProps.lngDict} locale={pageProps.lng}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </I18n>
     </>
   )

@@ -1,0 +1,5 @@
+cors to accept
+
+vitals.vercel-insights.com
+api.shaynlink.dev
+sentry.com

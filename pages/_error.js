@@ -15,13 +15,19 @@ const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
 };
 
 MyError.getInitialProps = async (context) => {
-  const errorInitialProps = await NextErrorComponent.getInitialProps(context);
+
+  const getInitProps = await (NextErrorComponent.getInitialProps
+    ? NextErrorComponent.getInitialProps
+    : NextErrorComponent.origGetInitialProps
+  );
+
+  const errorInitialProps = await getInitProps ? getInitProps(context) : {};
   
   const { res, err, asPath } = context;
 
   // Workaround for https://github.com/vercel/next.js/issues/8592, mark when
   // getInitialProps has run
-  errorInitialProps.hasGetInitialPropsRun = true;
+  errorInitialProps.hasGetInitialPropsRun = !!getInitProps;
 
   // Returning early because we don't want to log 404 errors to Sentry.
   if (res?.statusCode === 404) {

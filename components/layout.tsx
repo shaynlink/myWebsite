@@ -1,7 +1,12 @@
-export default function Layout({ children }: { children: React.ReactNode }) {
+import Navbar from './Navbar';
+
+export default function Layout({ children }: { children: React.ReactNode }): JSX.Element {
     return (
         <>
-            <main>{children}</main>
+            <Navbar />
+            <main>
+                {children}
+            </main>
         </>
     )
 }

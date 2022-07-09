@@ -7,7 +7,17 @@ export const defaultLanguage = 'en';
 export const languages = ['en', 'fr'];
 export const contentLanguageMap = { en: 'en-US', fr: 'fr-FR' };
 
-export const I18nContext = createContext({});
+interface InfinityObject {
+    [key: string]: InfinityObject | string
+}
+
+export type I18nWrapper = {
+    activeLocale: string;
+    t: (key: string, params?: any, lang?: any) => string;
+    locale: (l: string, dict: InfinityObject) => void;
+}
+
+export const I18nContext = createContext<Partial<I18nWrapper>>({});
 
 i18n.locale(defaultLanguage);
 
@@ -22,10 +32,10 @@ export default function I18n({ children, locale, lngDict }: I18nArgs) {
     const [, setTick] = useState(0);
     const firstRender = useRef(true);
 
-    const i18nWrapper = {
+    const i18nWrapper: I18nWrapper = {
         activeLocale: activeLocaleRef.current,
         t: (key: string, params: any, lang: string) => i18n.t(key, params, lang),
-        locale: (l: string, dict: { [key: string]: string }) => {
+        locale: (l: string, dict: InfinityObject) => {
             i18n.locale(l);
             activeLocaleRef.current = l;
             if (dict) {
