@@ -1,0 +1,26 @@
+{
+    "name": "akira",
+    "description": "Simple portfolio website for shaynlink",
+    "repository": {
+        "url": "https://github.com/shaynlink/myWebsite",
+        "license": "MIT"
+    },
+    "participate": {
+        "home": "https://github.com/shaynlink/myWebsite"
+    },
+    "bugs": {
+        "list": "https://github.com/shaynlink/myWebsite/issues",
+        "report": "https://github.com/shaynlink/myWebsite/issues/new",
+        "mentored": "https://github.com/shaynlink/myWebsite/issues/new"
+    },
+    "urls": {
+        "prod": "https://www.shaynlink.dev"
+    },
+    "keywords": [
+        "nextjs",
+        "nodejs",
+        "typescript",
+        "sass",
+        "tsx"
+    ]
+}

@@ -1,19 +1,12 @@
 // @ts-check
 import path from 'node:path';
+import {  } from 'node:crypto';
+import axios from 'axios';
 import { fileURLToPath } from 'url';
 import { withSentryConfig } from '@sentry/nextjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const contentSecurityPolicy = `
-  default-src 'self' o1113799.ingest.sentry.io;
-  script-src 'self' www.googletagmanager.com;
-  child-src www.shaynlink.dev;
-  style-src 'self' www.shaynlink.dev;
-  font-src 'self' fonts.gstatic.com github.com;
-  connect-src 'self' vitals.vercel-insights.com  o1113799.ingest.sentry.io;
-`;
 
 const securityHeaders = [
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
@@ -22,8 +15,7 @@ const securityHeaders = [
   { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
   { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
   { key: 'X-Content-Type-Options', value: 'nosniff' },
-  { key: 'Referrer-Policy', value: 'origin-when-cross-origin' },
-  { key: 'Content-Security-Policy', value: contentSecurityPolicy.replace(/\s{2,}/g, ' ').trim() }
+  { key: 'Referrer-Policy', value: 'origin-when-cross-origin' }
 ];
 
 const nextConfig = {
